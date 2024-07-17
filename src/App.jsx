@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Form from './components/Header.jsx'
+import TaskList from './components/TaskList.jsx'
 import './App.css'
 
 function App() {
@@ -33,20 +34,7 @@ function App() {
   return (
     <main>
       <Form text={text} onChange={handlerChange} onSubmit={handlerSubmit}/>
-      <ul>
-        {tasks.length > 0 && tasks.map(
-          task => {
-            return (
-              <li className='task' key={task.id}>
-                <input className='task-checkbox' name='input-check'type="checkbox" checked={task.done}/>
-                <p className='task-description'>{task.task}</p>
-                <button className='task-button edit' onClick={() => handlerEdit(task.id)}>Editar</button>
-                <button className='task-button delete'onClick={() => handlerDelete(task.id)}>Eliminar</button>
-              </li>
-            )
-          }
-        )}
-      </ul>
+      <TaskList tasks={tasks} onClickEdit={handlerEdit} onClickDelete={handlerDelete}/>
     </main>
   )
 }
