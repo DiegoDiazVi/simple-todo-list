@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Form from './components/Header.jsx'
 import './App.css'
 
 function App() {
@@ -31,10 +32,7 @@ function App() {
 
   return (
     <main>
-      <form  className='task-form' onSubmit={handlerSubmit}>
-        <input className='task-form-input' name='input-task' type="text" placeholder='Ingresa tu tarea' value={text} onChange={handlerChange}/>
-        <button className='task-form-button' type="submit"> Agregar tarea</button>
-      </form>
+      <Form text={text} onChange={handlerChange} onSubmit={handlerSubmit}/>
       <ul>
         {tasks.length > 0 && tasks.map(
           task => {
