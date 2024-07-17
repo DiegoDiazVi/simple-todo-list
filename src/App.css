@@ -23,14 +23,14 @@ main {
     justify-content: space-between;
 }
 
-.task-form-input {
+.task-form-input, .task-input-edit {
     border: none;
     padding: 3px;
     border-radius: 8px;
     background-color: #fff;
 }
 
-.task-form-button {
+.task-form-button, .task-save{
     width: 105px;
     border-radius: 8px;
     border: none;
@@ -39,7 +39,7 @@ main {
     cursor: pointer;
 }
 
-.task-form-button:hover {
+.task-form-button:hover, .task-save:hover{
     background-color: #f7fb2a;
 }
 
