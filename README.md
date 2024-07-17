@@ -1,9 +1,10 @@
-# React + Vite
+# Objetivo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Crear una aplicación de lista de tareas pendientes utilizando `useReducer` para manejar el estado de la lista y las acciones.
 
-Currently, two official plugins are available:
+## Pasos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# simple-todo-list
+1. Inicializa una aplicación de React si aún no tienes un proyecto configurado.
+2. Crea un componente `TodoApp` que contendrá la lógica de `useReducer`.
+3. Implementa el `reducer` para manejar las acciones de agregar, eliminar y marcar como completadas las tareas.
+4. Crea los componentes necesarios: `TodoList`, `TodoItem`, y un formulario para agregar nuevas tareas.
