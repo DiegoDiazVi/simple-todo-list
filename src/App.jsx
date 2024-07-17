@@ -10,8 +10,25 @@ function App() {
   }
 
   const handlerSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    setTasks([...tasks,
+      {
+        id: idNext++,
+        task: e.target['input-task'].value,
+        done: false
+      }]
+    )
   }
+
+  const handlerEdit = (id) => {
+    console.log(id)
+  }
+
+  const handlerDelete = (id) => {
+    const filterTask = tasks.filter( task => task.id !== id )
+    setTasks(filterTask)
+  }
+
   return (
     <main>
       <form  className='task-form' onSubmit={handlerSubmit}>
@@ -25,8 +42,8 @@ function App() {
               <li className='task' key={task.id}>
                 <input className='task-checkbox' name='input-check'type="checkbox" checked={task.done}/>
                 <p className='task-description'>{task.task}</p>
-                <button className='task-button edit'>Editar</button>
-                <button className='task-button delete'>Eliminar</button>
+                <button className='task-button edit' onClick={() => handlerEdit(task.id)}>Editar</button>
+                <button className='task-button delete'onClick={() => handlerDelete(task.id)}>Eliminar</button>
               </li>
             )
           }
@@ -35,7 +52,7 @@ function App() {
     </main>
   )
 }
-
+let idNext = 4
 const initialTasks = [
   { id: 0, task: 'Levantarme', done: true },
   { id: 1, task: 'Bañarme', done: false },
