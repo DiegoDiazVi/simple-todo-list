@@ -4,8 +4,8 @@ import TaskList from './components/TaskList.jsx'
 import './App.css'
 
 function App() {
-  const [text, setText] = useState('')
-  const [tasks, setTasks] = useState(initialTasks)
+  const [text, setText] = useState('');
+  const [tasks, setTasks] = useState(initialTasks);
 
   const handlerChange = (e) => {
     setText(e.target.value)
@@ -31,10 +31,20 @@ function App() {
     setTasks(filterTask)
   }
 
+  const handlerCheckBox = (id, isDone) => {
+    const updatedTasks = tasks.map( task => {
+      if (task.id === id) {
+        return {...task, done: !isDone}
+      }
+      return task
+    })
+    setTasks(updatedTasks)
+  }
+
   return (
     <main>
       <Form text={text} onChange={handlerChange} onSubmit={handlerSubmit}/>
-      <TaskList tasks={tasks} onClickEdit={handlerEdit} onClickDelete={handlerDelete}/>
+      <TaskList tasks={tasks} onClickEdit={handlerEdit} onClickDelete={handlerDelete} onClickCheckbox={handlerCheckBox}/>
     </main>
   )
 }
