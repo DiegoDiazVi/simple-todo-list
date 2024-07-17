@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useReducer } from 'react'
 import Form from './components/Header.jsx'
 import TaskList from './components/TaskList.jsx'
+import { tasksReducer } from './reducers/tasksReducer.js'
 import './App.css'
 
 function App() {
   const [text, setText] = useState('');
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks)
 
   const handlerChange = (e) => {
     setText(e.target.value)
@@ -13,13 +14,12 @@ function App() {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
-    setTasks([...tasks,
-      {
+    dispatch({
+        type: 'add',
         id: idNext++,
         task: e.target['input-task'].value,
         done: false
-      }]
-    )
+    })
   }
 
   const handlerEdit = (id) => {
@@ -27,24 +27,24 @@ function App() {
   }
 
   const handlerDelete = (id) => {
-    const filterTask = tasks.filter( task => task.id !== id )
-    setTasks(filterTask)
+    dispatch({
+      type: 'delete',
+      id: id
+    })
   }
 
   const handlerCheckBox = (id, isDone) => {
-    const updatedTasks = tasks.map( task => {
-      if (task.id === id) {
-        return {...task, done: !isDone}
-      }
-      return task
+    dispatch({
+      type: 'changedCheckBox',
+      id: id,
+      isDone: isDone
     })
-    setTasks(updatedTasks)
   }
 
   return (
     <main>
       <Form text={text} onChange={handlerChange} onSubmit={handlerSubmit}/>
-      <TaskList tasks={tasks} onClickEdit={handlerEdit} onClickDelete={handlerDelete} onClickCheckbox={handlerCheckBox}/>
+      <TaskList tasks={tasks} onClickEdit={handlerEdit} onClickDelete={handlerDelete} onClickCheckbox={handlerCheckBox} onChangeText={handlerChange}/>
     </main>
   )
 }
