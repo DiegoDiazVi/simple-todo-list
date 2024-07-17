@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
-function TodoItem({task, onClickEdit, onClickDelete, onClickCheckbox}) {
+function TodoItem({task, onClickEdit, onClickDelete, onClickCheckbox, onChangeText}) {
     const [isEditing, setIsEditing] = useState(false);
 
     const handlerClickEdit = (id) => {
         setIsEditing(!isEditing)
         onClickEdit(id)
     }
+
     return (
         <li className='task'>
             {isEditing ?
@@ -16,9 +17,15 @@ function TodoItem({task, onClickEdit, onClickDelete, onClickCheckbox}) {
                 </>
                 :
                 <>
-                    <input className='task-checkbox' name='input-check'type="checkbox" checked={task.done} onChange={() => onClickCheckbox(task.id, task.done)}/>
+                    <input
+                        className='task-checkbox'
+                        name='input-check'
+                        type="checkbox"
+                        checked={task.done}
+                        onChange={() => onClickCheckbox(task.id, task.done)}
+                    />
                     <p className='task-description'>{task.task}</p>
-                    <button className='task-button edit' onClick={() => handlerClickEdit(task.id)}>Editar</button>
+                    <button className='task-button edit' onClick={() => handlerClickEdit(task.id, task.task)}>Editar</button>
                     <button className='task-button delete'onClick={() => onClickDelete(task.id)}>Eliminar</button>
                 </>
             }
