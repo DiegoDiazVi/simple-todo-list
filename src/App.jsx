@@ -20,10 +20,7 @@ function App() {
         task: e.target['input-task'].value,
         done: false
     })
-  }
-
-  const handlerEdit = (id) => {
-    console.log(id)
+    setText('')
   }
 
   const handlerDelete = (id) => {
@@ -44,7 +41,7 @@ function App() {
   return (
     <main>
       <Form text={text} onChange={handlerChange} onSubmit={handlerSubmit}/>
-      <TaskList tasks={tasks} onClickEdit={handlerEdit} onClickDelete={handlerDelete} onClickCheckbox={handlerCheckBox} onChangeText={handlerChange}/>
+      <TaskList tasks={tasks} onClickDelete={handlerDelete} onClickCheckbox={handlerCheckBox}/>
     </main>
   )
 }
