@@ -1,6 +1,6 @@
 import TodoItem from "./TodoItem.jsx";
 
-function TaskList({tasks, onClickEdit, onClickDelete, onClickCheckbox }) {
+function TaskList({ tasks, onClickDelete, onClickCheckbox }) {
     return (
         <ul>
             {tasks.length > 0 && tasks.map(
@@ -9,7 +9,6 @@ function TaskList({tasks, onClickEdit, onClickDelete, onClickCheckbox }) {
                         <TodoItem
                             key={task.id}
                             task={task}
-                            onClickEdit={onClickEdit}
                             onClickDelete={onClickDelete}
                             onClickCheckbox={onClickCheckbox}
                         />
