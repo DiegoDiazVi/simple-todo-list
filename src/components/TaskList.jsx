@@ -1,9 +1,8 @@
-import { useContext } from "react";
+import { useTasks } from "../hooks/useTask.js";
 import TodoItem from "./TodoItem.jsx";
-import { TodoContext } from "../context/TodoContext.jsx";
 
 function TaskList() {
-    const tasks = useContext(TodoContext);
+    const tasks = useTasks();
 
     return (
         <ul>
