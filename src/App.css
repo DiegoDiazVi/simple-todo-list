@@ -30,17 +30,17 @@ main {
     background-color: #fff;
 }
 
-.task-form-button, .task-save{
+.task-form-button {
     width: 105px;
     border-radius: 8px;
     border: none;
     font-weight: 700;
-    background-color: #ebf43eda;
+    background-color: #5fb3fd;
     cursor: pointer;
 }
 
-.task-form-button:hover, .task-save:hover{
-    background-color: #f7fb2a;
+.task-form-button:hover {
+    background-color: #3e9ff4;
 }
 
 
@@ -70,14 +70,6 @@ ul {
     border: none;
     cursor: pointer;
     font-weight: 600;
-}
-
-.edit {
-    background-color: #5fb3fd;
-}
-
-.edit:hover {
-    background-color: #3e9ff4;
 }
 
 .delete {
