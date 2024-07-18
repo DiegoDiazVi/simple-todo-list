@@ -1,16 +1,11 @@
-import { useState, useReducer } from 'react'
+import { useReducer } from 'react'
 import Form from './components/Header.jsx'
 import TaskList from './components/TaskList.jsx'
 import { tasksReducer } from './reducers/tasksReducer.js'
 import './App.css'
 
 function App() {
-  const [text, setText] = useState('');
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks)
-
-  const handlerChange = (e) => {
-    setText(e.target.value)
-  }
 
   const handlerSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +15,6 @@ function App() {
         task: e.target['input-task'].value,
         done: false
     })
-    setText('')
   }
 
   const handlerDelete = (id) => {
@@ -40,7 +34,7 @@ function App() {
 
   return (
     <main>
-      <Form text={text} onChange={handlerChange} onSubmit={handlerSubmit}/>
+      <Form onSubmit={handlerSubmit}/>
       <TaskList tasks={tasks} onClickDelete={handlerDelete} onClickCheckbox={handlerCheckBox}/>
     </main>
   )
