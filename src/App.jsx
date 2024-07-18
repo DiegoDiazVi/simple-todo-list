@@ -3,6 +3,7 @@ import Form from './components/Header.jsx'
 import TaskList from './components/TaskList.jsx'
 import { tasksReducer } from './reducers/tasksReducer.js'
 import './App.css'
+import { TodoContext, TodoDispatchContext } from './context/TodoContext.jsx'
 
 function App() {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks)
@@ -19,25 +20,15 @@ function App() {
     })
   }
 
-  const handlerDelete = (id) => {
-    dispatch({
-      type: 'delete',
-      id: id
-    })
-  }
-
-  const handlerCheckBox = (id, isDone) => {
-    dispatch({
-      type: 'changedCheckBox',
-      id: id,
-      isDone: isDone
-    })
-  }
 
   return (
     <main>
-      <Form onSubmit={handlerSubmit}/>
-      <TaskList tasks={tasks} onClickDelete={handlerDelete} onClickCheckbox={handlerCheckBox}/>
+      <TodoContext.Provider value={tasks}>
+          <TodoDispatchContext.Provider value={dispatch}>
+            <Form onSubmit={handlerSubmit}/>
+            <TaskList />
+          </TodoDispatchContext.Provider>
+      </TodoContext.Provider>
     </main>
   )
 }
