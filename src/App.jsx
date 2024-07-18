@@ -9,10 +9,12 @@ function App() {
 
   const handlerSubmit = (e) => {
     e.preventDefault();
+    let newTodo = e.target['input-task'].value
+    if (newTodo.trim() === '') return
     dispatch({
         type: 'add',
         id: idNext++,
-        task: e.target['input-task'].value,
+        task: newTodo,
         done: false
     })
   }
