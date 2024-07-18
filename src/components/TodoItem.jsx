@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { TodoDispatchContext } from "../context/TodoContext";
+import { useDispatch } from "../hooks/useDispatch";
 
 function TodoItem({ task }) {
-    const dispatch = useContext(TodoDispatchContext);
+    const dispatch = useDispatch();
 
     const handlerDelete = (id) => {
         dispatch({
